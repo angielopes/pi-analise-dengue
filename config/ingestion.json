@@ -1,0 +1,18 @@
+[
+    {
+        "table": "DENGBR24",
+        "path": "../data/DENGBR24.csv"
+    },
+    {
+        "table": "DENGBR25",
+        "path": "../data/DENGBR25.csv"
+    },
+    {
+        "table": "INMET_2024",
+        "path": "../data/INMET_2024.csv"
+    },
+    {
+        "table": "INMET_2025",
+        "path": "../data/INMET_2025.csv"
+    }
+]

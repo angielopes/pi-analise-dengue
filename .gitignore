@@ -208,4 +208,4 @@ __marimo__/
 
 # Folders
 .mypy_cache/
-docs/
+data/raw/

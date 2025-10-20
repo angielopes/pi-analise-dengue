@@ -61,8 +61,8 @@ def processar_inmet():
                 colunas_manter.append(coluna)
                 mapeamento_nomes[coluna] = "umidade_relativa_percent"
 
-            df_final = df[colunas_manter]
-            df_final = df_final.rename(columns=mapeamento_nomes)
+        df_final = df[colunas_manter]
+        df_final = df_final.rename(columns=mapeamento_nomes)
 
         # Corrigir valores decimais que começam com vírgula
         for coluna in [

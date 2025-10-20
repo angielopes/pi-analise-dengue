@@ -77,7 +77,6 @@ def processar_inmet():
                 df_final[coluna] = df_final[coluna].str.replace(
                     r"^\.", "0.", regex=True
                 )
-                df_final[coluna] = df_final[coluna].str.replace(r"^;", "0;", regex=True)
                 # Converter para numérico
                 df_final[coluna] = pd.to_numeric(df_final[coluna], errors="coerce")
 

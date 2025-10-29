@@ -89,7 +89,7 @@ def processar_inmet():
             df_final.groupby("data")
             .agg(
                 {
-                    "precipitacao_total": "sum",  # Soma da precipitação do dia
+                    "precipitacao_total": lambda x: x.sum(min_count=1),  # Soma da precipitação do dia, retorna NaN se todos forem NaN
                     "temperatura_c": "mean",  # Média da temperatura
                     "umidade_relativa_percent": "mean",  # Média da umidade
                 }

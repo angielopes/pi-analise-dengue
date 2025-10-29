@@ -80,8 +80,31 @@ def processar_inmet():
                 # Converter para numérico
                 df_final[coluna] = pd.to_numeric(df_final[coluna], errors="coerce")
 
-        df_final.to_csv(arquivo_saida, sep=";", index=False, encoding="utf-8")
-        print(f"INMET {ano}: {len(df_final)} registros")
+        # Verificar se há dados duplicados antes de agrupar
+        print(f"Antes do agrupamento: {len(df_final)} registros")
+        print(f"Datas únicas: {df_final['data'].nunique()}")
+
+        # Agrupar por data e calcular médias diárias
+        df_agrupado = (
+            df_final.groupby("data")
+            .agg(
+                {
+                    "precipitacao_total": "sum",  # Soma da precipitação do dia
+                    "temperatura_c": "mean",  # Média da temperatura
+                    "umidade_relativa_percent": "mean",  # Média da umidade
+                }
+            )
+            .reset_index()
+        )
+
+        print(f"Depois do agrupamento: {len(df_agrupado)} dias")
+        print("Primeiras linhas agrupadas:")
+        print(df_agrupado.head())
+
+        df_agrupado.to_csv(arquivo_saida, sep=";", index=False, encoding="utf-8")
+        print(
+            f"INMET {ano}: {len(df_agrupado)} dias (agrupado de {len(df_final)} registros)"
+        )
 
 
 # %%

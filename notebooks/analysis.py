@@ -45,3 +45,46 @@ with st.spinner("Carregando dados..."):
     df_dengue, df_inmet = carregar_dados()
 
 # %%
+# Sidebar com filtros
+st.sidebar.header("Filtros")
+ano_selecionado = st.sidebar.selectbox(
+    "Selecione o Ano:", options=["Todos"] + sorted(df_dengue["NU_ANO"].unique())
+)
+
+variavel_climatica = st.sidebar.selectbox(
+    "Variável Climática:", options=["Temperatura", "Precipitação", "Umidade"]
+)
+
+# %%
+# Processamento dos dados
+# Converter datas
+df_dengue["DT_NOTIFIC"] = pd.to_datetime(
+    df_dengue["DT_NOTIFIC"], format="%d/%m/%Y", errors="coerce"
+)
+df_inmet["data"] = pd.to_datetime(df_inmet["data"], format="%Y/%m/%d", errors="coerce")
+
+# Agrupar dados por mês
+df_dengue_mensal = (
+    df_dengue.groupby(pd.Grouper(key="DT_NOTIFIC", freq="M"))
+    .size()
+    .reset_index(name="casos")
+)
+df_inmet_mensal = (
+    df_inmet.groupby(pd.Grouper(key="data", freq="M"))
+    .agg(
+        {
+            "precipitacao_total": "sum",
+            "temperatura_c": "mean",
+            "umidade_relativa_percent": "mean",
+        }
+    )
+    .reset_index()
+)
+
+# Juntar dados
+df_analise = pd.merge(
+    df_dengue_mensal.rename(columns={"DT_NOTIFIC": "data"}),
+    df_inmet_mensal,
+    on="data",
+    how="inner",
+)

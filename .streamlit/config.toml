@@ -1,5 +1,0 @@
-[server]
-headless = true
-
-[global]
-multi-root = false

@@ -175,6 +175,13 @@ fig1.update_yaxes(title_text=f"{variavel_climatica} ({var_unidade})", secondary_
 
 st.plotly_chart(fig1, use_container_width=True)
 
+# Breve explicação da Série Temporal
+st.write(
+    "Série temporal: mostra a evolução mensal dos casos de dengue (linha laranja) "
+    "em comparação com a variável climática selecionada (linha secundária). "
+    "Observe picos e possíveis defasagens entre clima e ocorrência de casos."
+)
+
 # Gráfico 3: Análise Sazonal
 st.header("Análise Sazonal")
 
@@ -210,12 +217,24 @@ fig3.update_xaxes(
 )
 st.plotly_chart(fig3, use_container_width=True)
 
+# Breve explicação da Análise Sazonal
+st.write(
+    "Análise sazonal: barra com a média de casos por mês. "
+    "Ajuda a identificar meses com maior tendência de ocorrência de dengue."
+)
+
 # Gráfico 4: Comparação entre Anos
 st.header("Comparação entre Anos")
 
 if len(df_analise["ano"].unique()) > 1:
     fig4 = px.box(df_analise, x="ano", y="casos", title="Distribuição de Casos por Ano")
     st.plotly_chart(fig4, use_container_width=True)
+
+    # Breve explicação da Comparação entre Anos
+    st.write(
+        "Comparação entre anos: boxplots que mostram a distribuição mensal de casos para cada ano, "
+        "destacando mediana, variabilidade e outliers."
+    )
 
 
 # Gráfico 5: Scatter Plot
@@ -232,6 +251,12 @@ fig7 = px.scatter(
     },
 )
 st.plotly_chart(fig7, use_container_width=True)
+
+# Breve explicação do Scatter Plot
+st.write(
+    "Dispersão: relação entre a variável climática selecionada e o número de casos. "
+    "Use para avaliar correlação visual e procurar padrões (pontos dispersos, tendência)."
+)
 
 # Informações técnicas
 with st.expander("Informações Técnicas"):
@@ -259,5 +284,8 @@ with st.expander("Dados Resumidos"):
 # Rodapé
 st.markdown("---")
 st.markdown("**Projeto Integrador UNIVESP - 2025**")
+st.markdown("Angela Luisa da Silva Lopes")
+st.markdown("Lodiane Gabriely Queiroz da Conceição")
+st.markdown("Nicolas Francisco de Melo")
 
 # %%

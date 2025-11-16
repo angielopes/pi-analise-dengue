@@ -109,7 +109,7 @@ def processar_inmet():
 
 # %%
 # Executar
-# processar_dengue()
+processar_dengue()
 processar_inmet()
 
 # %%

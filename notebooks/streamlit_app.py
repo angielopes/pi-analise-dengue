@@ -1,5 +1,6 @@
 # %%
 import streamlit as st
+from pathlib import Path
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
@@ -7,6 +8,7 @@ from plotly.subplots import make_subplots
 import glob
 import os
 
+BASE = Path(__file__).resolve().parent.parent
 # %%
 # Configuração da página
 st.set_page_config(
@@ -23,7 +25,9 @@ st.subheader("Município de Marília/SP")
 def carregar_dados():
     try:
         # Carregar dados de dengue
-        arquivos_dengue = glob.glob("data/processed/DENGBR*_MARILIA.csv")
+        arquivos_dengue = list(
+            (BASE / "data" / "processed").glob("DENGBR*_MARILIA.csv")
+        )
         df_dengue_list = []
         for arquivo in arquivos_dengue:
             df = pd.read_csv(arquivo, sep=";")
@@ -31,7 +35,9 @@ def carregar_dados():
         df_dengue = pd.concat(df_dengue_list, ignore_index=True)
 
         # Carregar dados climáticos
-        arquivos_inmet = glob.glob("data/processed/INMET_*_FILTRADO.csv")
+        arquivos_inmet = list(
+            (BASE / "data" / "processed").glob("INMET_*_FILTRADO.csv")
+        )
         df_inmet_list = []
         for arquivo in arquivos_inmet:
             df = pd.read_csv(arquivo, sep=";")

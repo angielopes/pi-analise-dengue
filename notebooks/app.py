@@ -24,7 +24,7 @@ st.subheader("Município de Marília/SP")
 def carregar_dados():
     try:
         # Carregar dados de dengue
-        arquivos_dengue = glob.glob("processed/DENGBR*_MARILIA.csv")
+        arquivos_dengue = glob.glob("DENGBR*_MARILIA.csv")
         df_dengue_list = []
         for arquivo in arquivos_dengue:
             df = pd.read_csv(arquivo, sep=";")
@@ -32,7 +32,7 @@ def carregar_dados():
         df_dengue = pd.concat(df_dengue_list, ignore_index=True)
 
         # Carregar dados climáticos
-        arquivos_inmet = glob.glob("processed/INMET_*_FILTRADO.csv")
+        arquivos_inmet = glob.glob("INMET_*_FILTRADO.csv")
         df_inmet_list = []
         for arquivo in arquivos_inmet:
             df = pd.read_csv(arquivo, sep=";")

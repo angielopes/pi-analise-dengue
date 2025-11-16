@@ -12,17 +12,17 @@ Este projeto tem como objetivo analisar a relação entre o número de casos de 
 ## Estrutura do Projeto
 
 - **`data/`**: Contém os dados brutos (`raw`) e processados (`processed`) utilizados na análise.
-- **`notebooks/`**: Contém os scripts Python para processamento de dados (`data_tratament.py`) e a aplicação web de visualização (`analysis.py`).
+- **`notebooks/`**: Contém os scripts Python para processamento de dados (`data_tratament.py`) e a aplicação web de visualização (`app.py`).
 - **`config/`**: (A ser utilizado para configurações do projeto).
 - **`docs/`**: (A ser utilizado para documentação adicional).
 
 ## Instalação
 
-Para executar este projeto, você precisará ter Python 3.x instalado. Clone o repositório e instale as dependências:
+Para executar este projeto, você precisará ter Python 3.12 instalado. Clone o repositório e instale as dependências:
 
 ```bash
-git clone <url-do-repositorio>
-cd <nome-do-repositorio>
+git clone <https://github.com/angielopes/pi-analise-dengue>
+cd <pi-analise-dengue>
 pip install -r requirements.txt
 ```
 
@@ -41,5 +41,5 @@ python notebooks/data_tratament.py
 Para iniciar a aplicação web e visualizar os gráficos e análises, utilize o Streamlit:
 
 ```bash
-streamlit run notebooks/analysis.py
+streamlit run notebooks/app.py
 ```
